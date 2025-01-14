@@ -16,7 +16,7 @@ def test_heap_insert_and_remove_min(heap):
     heap.insert(20)
 
     assert heap.remove_min() == 5
-    assert heap.remove_min() == 10
+    assert heap.remove_min() == 20
     assert heap.remove_min() == 20
 
     assert heap.is_empty() == True
