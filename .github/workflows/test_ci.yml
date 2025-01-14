@@ -1,0 +1,36 @@
+name: Python CI with pytest
+
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 푸시될 때 실행
+  pull_request:
+    branches:
+      - main  # main 브랜치로의 PR에서 실행
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. GitHub 저장소 체크아웃
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Python 설정
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12  # 원하는 Python 버전 지정
+
+      # 3. 의존성 설치
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 4. 테스트 실행
+      - name: Run pytest
+        run: |
+          pytest
+
